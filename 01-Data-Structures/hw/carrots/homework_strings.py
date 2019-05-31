@@ -16,6 +16,9 @@
  - последовательность кодонов для каждого гена
 
 """
+import matplotlib.pyplot as plt
+
+
 def translate_from_dna_to_rna(dna):  
     rna = dna.replace('T', 'U')  
     return rna
@@ -40,12 +43,12 @@ def translate_rna_to_protein(rna, codons_table):
             protein += codons_table[codon]
     return protein + '\n'
 
-# read the file dna.fasta
+""" read the file dna.fasta """
 dna = open('.\\files\\dna.fasta', 'r')
 dna_data = dna.readlines()
 dna.close()
 
-# data processing
+""" data processing """
 dna_sequences = {}
 for data_line in dna_data:
     if data_line.startswith('>'):
@@ -54,16 +57,29 @@ for data_line in dna_data:
     else:
         dna_sequences[name].append(data_line)
 
-# count nucleotites
+""" count nucleotites + build histograms """
 dna_statistic = open('.\\files\\result_dna_statistic.txt', 'w')
 for name in dna_sequences:
+    """ count DNA from and save data """
     dna_statistic.write(name)
     curr_count = count_nucleotides(*dna_sequences[name])
     for elem in curr_count:
         dna_statistic.write(elem + ' = ' + str(curr_count[elem]) + '\n')
+        
+    """ histograms """
+    values = curr_count.values()
+    y_pos = range(len(values))
+    #ax = plt.gca()
+    plt.bar(y_pos, values, align='center', alpha=0.4)
+    plt.xticks(y_pos, curr_count)
+    plt.ylabel('Quantity')
+    plt.title('DNA statistic. Object -' + str(name))
+    plt.savefig('.\\files\\' + name[2:-2] + '.png')
+    plt.close()
 dna_statistic.close()
-    
-# codon's transfer table
+
+
+""" read codon's transfer table from file """
 flag = 1
 last_elem = ''
 codons_data = {}
@@ -79,7 +95,7 @@ for line in codons_lines:
             codons_data[last_elem] = element
             flag = 1
 
-# dna to rna + rna to protein 
+""" transfer dna to rna + rna to protein """
 dna_to_rna = open('.\\files\\result_dna_to_rna.txt', 'w')
 rna_to_protein = open('.\\files\\result_rna_to_protein.txt', 'w')
 
@@ -87,10 +103,10 @@ for name in dna_sequences:
     dna_to_rna.write(name)
     rna_to_protein.write(name)
     for dna_line in dna_sequences[name]:
-        # dna to rna
+        """ transfer dna to rna and save data """
         rna_line = translate_from_dna_to_rna(dna_line)
         dna_to_rna.write(rna_line)
-        # rna to protein
+        """ transfer rna to protein and save data """
         protein_line = translate_rna_to_protein(rna_line, codons_data)
         rna_to_protein.write(protein_line)
                    
