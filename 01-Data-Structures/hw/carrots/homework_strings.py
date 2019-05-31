@@ -20,8 +20,8 @@ import matplotlib.pyplot as plt
 
 
 def translate_from_dna_to_rna(dna):  
-    rna = dna.replace('T', 'U')  
-    return rna
+    return dna.replace('T', 'U')  
+
 
 def count_nucleotides(*dna):
     num_of_nucleotides = {}
@@ -43,12 +43,11 @@ def translate_rna_to_protein(rna, codons_table):
             protein += codons_table[codon]
     return protein + '\n'
 
-""" read the file dna.fasta """
-dna = open('.\\files\\dna.fasta', 'r')
-dna_data = dna.readlines()
-dna.close()
 
-""" data processing """
+""" read the file dna.fasta """
+with open('.\\files\\dna.fasta', 'r') as file:
+    dna_data = file.readlines()
+
 dna_sequences = {}
 for data_line in dna_data:
     if data_line.startswith('>'):
@@ -58,57 +57,45 @@ for data_line in dna_data:
         dna_sequences[name].append(data_line)
 
 """ count nucleotites + build histograms """
-dna_statistic = open('.\\files\\result_dna_statistic.txt', 'w')
-for name in dna_sequences:
-    """ count DNA from and save data """
-    dna_statistic.write(name)
-    curr_count = count_nucleotides(*dna_sequences[name])
-    for elem in curr_count:
-        dna_statistic.write(elem + ' = ' + str(curr_count[elem]) + '\n')
-        
-    """ histograms """
-    values = curr_count.values()
-    y_pos = range(len(values))
-    #ax = plt.gca()
-    plt.bar(y_pos, values, align='center', alpha=0.4)
-    plt.xticks(y_pos, curr_count)
-    plt.ylabel('Quantity')
-    plt.title('DNA statistic. Object -' + str(name))
-    plt.savefig('.\\files\\' + name[2:-2] + '.png')
-    plt.close()
-dna_statistic.close()
-
+with open('.\\files\\result_dna_statistic.txt', 'w') as file:
+    for name in dna_sequences:
+        """ count DNA from and save data """
+        file.write(name)
+        curr_count = count_nucleotides(*dna_sequences[name])
+        for elem in curr_count:
+            file.write(elem + ' = ' + str(curr_count[elem]) + '\n')
+            
+        """ histograms """
+        values = curr_count.values()
+        y_pos = range(len(values))
+        plt.bar(y_pos, values, align='center', alpha=0.4)
+        plt.xticks(y_pos, curr_count)
+        plt.ylabel('Quantity')
+        plt.xlabel('Nucleotide')
+        plt.title('DNA statistic. Object -' + str(name))
+        plt.savefig('.\\files\\' + name[2:-1] + '.png')
+        plt.close()
 
 """ read codon's transfer table from file """
-flag = 1
-last_elem = ''
+with open('.\\files\\rna_codon_table.txt', 'r') as file:
+    codons_lines = file.readlines()
+
 codons_data = {}
-codons_obj = open('.\\files\\rna_codon_table.txt', 'r')
-codons_lines = codons_obj.readlines()
 for line in codons_lines:
-    for element in line.split():
-        if flag:
-            codons_data[element] = None
-            last_elem = element
-            flag = 0
-        else:
-            codons_data[last_elem] = element
-            flag = 1
+    data = line.split()
+    codons = {i:j for i,j in zip(data[::2], data[1::2])}
+    codons_data = {**codons_data, **codons}
 
 """ transfer dna to rna + rna to protein """
-dna_to_rna = open('.\\files\\result_dna_to_rna.txt', 'w')
-rna_to_protein = open('.\\files\\result_rna_to_protein.txt', 'w')
-
-for name in dna_sequences:
-    dna_to_rna.write(name)
-    rna_to_protein.write(name)
-    for dna_line in dna_sequences[name]:
-        """ transfer dna to rna and save data """
-        rna_line = translate_from_dna_to_rna(dna_line)
-        dna_to_rna.write(rna_line)
-        """ transfer rna to protein and save data """
-        protein_line = translate_rna_to_protein(rna_line, codons_data)
-        rna_to_protein.write(protein_line)
-                   
-dna_to_rna.close()
-rna_to_protein.close()
+with open('.\\files\\result_dna_to_rna.txt', 'w') as rna_file:
+    with open('.\\files\\result_rna_to_protein.txt', 'w') as protein_file:
+        for name in dna_sequences:
+            rna_file.write(name)
+            protein_file.write(name)
+            for dna_line in dna_sequences[name]:
+                """ transfer dna to rna and save data """
+                rna_line = translate_from_dna_to_rna(dna_line)
+                rna_file.write(rna_line)
+                """ transfer rna to protein and save data """
+                protein_line = translate_rna_to_protein(rna_line, codons_data)
+                protein_file.write(protein_line)
