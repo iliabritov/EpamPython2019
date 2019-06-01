@@ -36,11 +36,12 @@ def count_nucleotides(*dna):
 
 def translate_rna_to_protein(rna, codons_table):
     rna = rna.replace('\n', '')
+    if len(rna) % 3:
+        rna = rna[:-(len(rna) % 3)]
     protein = ''
-    if len(rna) % 3 == 0:
-        for num in range(0, len(rna), 3):
-            codon = rna[num: num + 3]
-            protein += codons_table[codon]
+    for num in range(0, len(rna), 3):
+        codon = rna[num: num + 3]
+        protein += codons_table[codon]
     return protein + '\n'
 
 
