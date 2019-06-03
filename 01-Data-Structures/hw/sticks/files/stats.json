@@ -1,6 +1,6 @@
 {"statistic": {
 	"wine": {
-		"Gew\u00fcrztraminer":{
+		"Gew\u00fcrztraminer": {
 	 	 	 "average_price": "24.670212765957448",
 	 	 	 "min_price": "6",
 	 	 	 "max_price": "197",
@@ -8,7 +8,7 @@
 	 	 	 "most_common_country": "France",
 	 	 	 "average_score": "88.56276595744681"
 			 }
-		"Riesling":{
+		"Riesling": {
 	 	 	 "average_price": "31.230043997485858",
 	 	 	 "min_price": "5",
 	 	 	 "max_price": "775",
@@ -16,7 +16,7 @@
 	 	 	 "most_common_country": "Germany",
 	 	 	 "average_score": "89.47810601298973"
 			 }
-		"Merlot":{
+		"Merlot": {
 	 	 	 "average_price": "28.869129834254142",
 	 	 	 "min_price": "4",
 	 	 	 "max_price": "625",
@@ -24,7 +24,7 @@
 	 	 	 "most_common_country": "US",
 	 	 	 "average_score": "87.16194751381215"
 			 }
-		"Madera":{
+		"Madera": {
 	 	 	 "average_price": "0",
 	 	 	 "min_price": "0",
 	 	 	 "max_price": "0",
@@ -32,7 +32,7 @@
 	 	 	 "most_common_country": "0",
 	 	 	 "average_score": "0"
 			 }
-		"Tempranillo":{
+		"Tempranillo": {
 	 	 	 "average_price": "30.769000598444045",
 	 	 	 "min_price": "4",
 	 	 	 "max_price": "600",
@@ -40,7 +40,7 @@
 	 	 	 "most_common_country": "Spain",
 	 	 	 "average_score": "87.46798324356672"
 			 }
-		"Red Blend":{
+		"Red Blend": {
 	 	 	 "average_price": "34.18561203445348",
 	 	 	 "min_price": "5",
 	 	 	 "max_price": "500",
@@ -51,9 +51,9 @@
 
 	},
 	"most_expensive_wine": ["Ch\u00e2teau les Ormes Sorbet 2013  M\u00e9doc"],
-	"cheapest_wine": ["Terrenal 2010 Cabernet Sauvignon (Yecla)", "Bandit NV Chardonnay (California)", "Pam's Cuties NV Unoaked Chardonnay (California)", "Broke Ass 2009 Red Malbec-Syrah (Mendoza)", "Bandit NV Merlot (California)", "Bandit NV Merlot (California)", "Cramele Recas 2011 UnWineD Pinot Grigio (Viile Timisului)", "Felix Solis 2013 Flirty Bird Syrah (Vino de la Tierra de Castilla)", "Terrenal 2010 Estate Bottled Tempranillo (Yecla)", "Felix Solis 2012 Flirty Bird White (Vino de la Tierra de Castilla)"],
-	"highest_score": ["Ch\u00e2teau Lafite Rothschild 2010  Pauillac", "Ch\u00e2teau Cheval Blanc 2010  Saint-\u00c9milion", "Ch\u00e2teau Haut-Brion 2014  Pessac-L\u00e9ognan", "Quinta do Noval 2011 Nacional Vintage  (Port)", "Salon 2006 Le Mesnil Blanc de Blancs Brut Chardonnay (Champagne)", "Biondi Santi 2010 Riserva  (Brunello di Montalcino)", "Tenuta dell'Ornellaia 2007 Masseto Merlot (Toscana)", "Verit\u00e9 2007 La Muse Red (Sonoma County)", "Casa Ferreirinha 2008 Barca-Velha Red (Douro)", "Ch\u00e2teau L\u00e9oville Las Cases 2010  Saint-Julien", "Chambers Rosewood Vineyards NV Rare Muscat (Rutherglen)", "Casanova di Neri 2007 Cerretalto  (Brunello di Montalcino)", "Krug 2002 Brut  (Champagne)", "Louis Roederer 2008 Cristal Vintage Brut  (Champagne)", "Avignonesi 1995 Occhio di Pernice  (Vin Santo di Montepulciano)", "Cardinale 2006 Cabernet Sauvignon (Napa Valley)", "Ch\u00e2teau L\u00e9oville Barton 2010  Saint-Julien", "Charles Smith 2006 Royal City Syrah (Columbia Valley (WA))", "Cayuse 2008 Bionic Frog Syrah (Walla Walla Valley (WA))"],
-	"lowest_score": ["Grgich Hills 2004 Miljenko's Old Vines Zinfandel (Napa Valley)", "Mill\u00e9sim\u00e9 2005 Scoprire Red (California)", "Mill\u00e9sim\u00e9 2008 Scopire Red (Santa Ynez Valley)", "Casa Tiene Vista NV DeLuz Red (California)", "Opolo 2011 Reserve Zinfandel (Paso Robles)", "Catharine Valley 2005 Reserve Cabernet Franc (Finger Lakes)", "Vindemia 2006 Commonwealth Red (South Coast)", "Watts 2004 Watts Vineyard Cabernet Franc (Lodi)", "French Hill 2006 Grand Reserve Petit Verdot (California)", "Arrowhead Mountain 2008 Primary Red (Sonoma Valley)"],
+	"cheapest_wine": ["Terrenal 2010 Cabernet Sauvignon (Yecla)", "Bandit NV Chardonnay (California)", "Pam's Cuties NV Unoaked Chardonnay (California)", "Broke Ass 2009 Red Malbec-Syrah (Mendoza)", "Bandit NV Merlot (California)", "Bandit NV Merlot (California)", "Cramele Recas 2011 UnWineD Pinot Grigio (Viile Timisului)", "Felix Solis 2013 Flirty Bird Syrah (Vino de la Tierra de Castilla)", "Terrenal 2010 Estate Bottled Tempranillo (Yecla)", "Dancing Coyote 2015 White (Clarksburg)"],
+	"highest_score": ["Ch\u00e2teau Cheval Blanc 2010  Saint-\u00c9milion", "Ch\u00e2teau Lafite Rothschild 2010  Pauillac", "Ch\u00e2teau Haut-Brion 2014  Pessac-L\u00e9ognan", "Quinta do Noval 2011 Nacional Vintage  (Port)", "Salon 2006 Le Mesnil Blanc de Blancs Brut Chardonnay (Champagne)", "Biondi Santi 2010 Riserva  (Brunello di Montalcino)", "Tenuta dell'Ornellaia 2007 Masseto Merlot (Toscana)", "Verit\u00e9 2007 La Muse Red (Sonoma County)", "Casa Ferreirinha 2008 Barca-Velha Red (Douro)", "Ch\u00e2teau L\u00e9oville Las Cases 2010  Saint-Julien", "Chambers Rosewood Vineyards NV Rare Muscat (Rutherglen)", "Casanova di Neri 2007 Cerretalto  (Brunello di Montalcino)", "Krug 2002 Brut  (Champagne)", "Louis Roederer 2008 Cristal Vintage Brut  (Champagne)", "Avignonesi 1995 Occhio di Pernice  (Vin Santo di Montepulciano)", "Cardinale 2006 Cabernet Sauvignon (Napa Valley)", "Ch\u00e2teau L\u00e9oville Barton 2010  Saint-Julien", "Cayuse 2008 Bionic Frog Syrah (Walla Walla Valley (WA))", "Charles Smith 2006 Royal City Syrah (Columbia Valley (WA))"],
+	"lowest_score": ["Grgich Hills 2004 Miljenko's Old Vines Zinfandel (Napa Valley)", "Mill\u00e9sim\u00e9 2005 Scoprire Red (California)", "Mill\u00e9sim\u00e9 2008 Scopire Red (Santa Ynez Valley)", "Casa Tiene Vista NV DeLuz Red (California)", "Opolo 2011 Reserve Zinfandel (Paso Robles)", "Catharine Valley 2005 Reserve Cabernet Franc (Finger Lakes)", "Vindemia 2006 Commonwealth Red (South Coast)", "Watts 2004 Watts Vineyard Cabernet Franc (Lodi)", "French Hill 2006 Grand Reserve Petit Verdot (California)", "Spann Vineyards 2004 Twenty-Three Barrels Mo Jo Red (Sonoma County)"],
 	"most_expensive_country": "England",
 	"cheapest_country": "China",
 	"most_rated_country": "England",

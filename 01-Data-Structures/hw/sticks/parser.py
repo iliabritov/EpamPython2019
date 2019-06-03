@@ -150,7 +150,7 @@ total_stats['most_active_commentator'] = max(commentators.items(),
 with open('.\\files\\stats.json', 'w') as file:
     file.write('{"statistic": {\n\t"wine": {\n')
     for wine in result:
-        file.write('\t\t"' + wine + '":')
+        file.write('\t\t"' + wine + '": ')
         file.write(dumper([result[wine]], i=3))
     file.write('\n\t},\n')
     string = []
