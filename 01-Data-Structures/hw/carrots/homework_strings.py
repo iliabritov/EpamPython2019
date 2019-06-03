@@ -19,6 +19,7 @@
 import matplotlib.pyplot as plt
 
 
+
 def translate_from_dna_to_rna(dna):  
     return dna.replace('T', 'U')  
 
