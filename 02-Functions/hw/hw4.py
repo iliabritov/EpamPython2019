@@ -18,12 +18,3 @@ def modified_func(func, *fixated_args, **fixated_kwargs):
         sum_kwargs = {**fixated_kwargs, **fixed_kwargs}
         return func(*sum_args, **sum_kwargs)
     return new_func
-
-
-
-
-
-
-
-
-
