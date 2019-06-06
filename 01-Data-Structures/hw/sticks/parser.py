@@ -1,3 +1,5 @@
+import os
+
 
 def parser(string: str) -> list:
     """ function parse data string to list of dates """
@@ -25,7 +27,7 @@ def dumper(data_list: list, i=1) -> str:
 data = []
 file_names = 'winedata_1.json', 'winedata_2.json'
 for name in file_names:
-    with open('.\\files\\' + name) as file:
+    with open(os.path.join('.','files', name)) as file:
         data.extend(parser(file.read()))
 
 # delete dublicate and sorting
@@ -34,7 +36,7 @@ data = sorted(sorted(data, key=lambda i: i['variety']),
               key=lambda i: int(i['price']), reverse=True)
 
 # create new file
-with open('.\\files\\winedata_full.json', 'w') as file:
+with open(os.path.join('.','files', 'winedata_full.json'), 'w') as file:
     file.write(dumper(data))
 
 # find info for wine
