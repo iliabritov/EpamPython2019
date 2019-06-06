@@ -9,7 +9,8 @@ def parser(string: str) -> list:
     for raw_line in string.split('}, {"'):
         data.append(dict(part.split('": ') for part in raw_line.split(', "')))
         for elem in data[-1]:
-            data[-1][elem] = data[-1][elem].replace('"', '')
+            if '"' in data[-1][elem]:
+                data[-1][elem] = data[-1][elem][1:-1]
             if (elem == 'price' and data[-1][elem] == 'null'):
                 data[-1][elem] = '0'
     return data
@@ -21,7 +22,7 @@ def dumper(data_list: list, i=1) -> str:
     for obj in data_list:
         curr_strings.append(',\n'.join(['\t ' *i + '"' + str(key) + '": "'
                                         + str(obj[key]) + '"' for key in obj]))
-    return '{\n' + '\n },\n {\n'.join(curr_strings) + '\n' +'\t' * i + ' }\n'
+    return '[{\n' + '\n },\n {\n'.join(curr_strings) + '\n' +'\t' * i + ' }\n]'
 
 
 data = []
@@ -151,10 +152,13 @@ total_stats['most_active_commentator'] = max(commentators.items(),
 # record new statistic
 with open(os.path.join('.', 'files', 'stats.json'), 'w') as file:
     file.write('{"statistic": {\n\t"wine": {\n')
+    string = []
     for wine in result:
-        file.write('\t\t"' + wine + '": ')
-        file.write(dumper([result[wine]], i=3))
+        line = '\t\t"' + wine + '": ' + dumper([result[wine]], i=3)
+        string.append(line)
+    file.write(',\n'.join(string))
     file.write('\n\t},\n')
+    
     string = []
     for stats in total_stats:
         if type(total_stats[stats]) is list:
