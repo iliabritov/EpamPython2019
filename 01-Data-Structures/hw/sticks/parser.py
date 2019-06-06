@@ -27,7 +27,7 @@ def dumper(data_list: list, i=1) -> str:
 data = []
 file_names = 'winedata_1.json', 'winedata_2.json'
 for name in file_names:
-    with open(os.path.join('.','files', name)) as file:
+    with open(os.path.join('.', 'files', name)) as file:
         data.extend(parser(file.read()))
 
 # delete dublicate and sorting
@@ -36,7 +36,7 @@ data = sorted(sorted(data, key=lambda i: i['variety']),
               key=lambda i: int(i['price']), reverse=True)
 
 # create new file
-with open(os.path.join('.','files', 'winedata_full.json'), 'w') as file:
+with open(os.path.join('.', 'files', 'winedata_full.json'), 'w') as file:
     file.write(dumper(data))
 
 # find info for wine
@@ -149,7 +149,7 @@ total_stats['most_active_commentator'] = max(commentators.items(),
                                              key=lambda i: i[1])[0]
 
 # record new statistic
-with open('.\\files\\stats.json', 'w') as file:
+with open(os.path.join('.', 'files', 'stats.json'), 'w') as file:
     file.write('{"statistic": {\n\t"wine": {\n')
     for wine in result:
         file.write('\t\t"' + wine + '": ')
@@ -167,7 +167,7 @@ with open('.\\files\\stats.json', 'w') as file:
     file.write('\n\t}\n}')
 
 # record new markdown
-with open('.\\files\\markdown_file.txt', 'w') as file:
+with open(os.path.join('.', 'files', 'markdown_file.txt'), 'w') as file:
     file.write('Statistics on selected varieties\n\n')
     for wine in result:
         file.write(wine + '\n')
