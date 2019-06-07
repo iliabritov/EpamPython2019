@@ -58,7 +58,3 @@ if __name__ == '__main__':
     time.sleep(20) # sleepeing
     g = access_to_func(usefull_func, ['and', 'another', 'try'])
     g = access_to_func(usefull_func, ['and', 'another', 'try'])            
-
-
-    
-    
