@@ -2,19 +2,22 @@ import functools
 
 
 def print_result(func):
-    def decorator(req_func):
-        req_func.__doc__ = func.__doc__
-        req_func.__name__ = func.__name__
-        req_func.__original_func = func
-        return req_func
-
-    @decorator
+    @change_info(func)
     def wrapper(*args, **kwargs):
         """Function-wrapper which print result of an original function"""
         result = func(*args, **kwargs)
         print(result)
-        return result
+        return result 
     return wrapper
+
+
+def change_info(req_func):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            return func(*args, **kwargs)
+        functools.update_wrapper(wrapper, req_func)
+        return wrapper
+    return decorator
 
 
 @print_result
