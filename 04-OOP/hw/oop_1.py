@@ -1,44 +1,41 @@
-"""
-Необходимо создать 3 класса и взаимосвязь между ними (Student, Teacher,
-Homework)
-Наследование в этой задаче использовать не нужно.
-Для работы с временем использовать модуль datetime
+from datetime import datetime, timedelta
 
-1. Homework принимает на вход 2 атрибута: текст задания и количество дней
-на это задание
-Атрибуты:
-    text - текст задания
-    deadline - хранит объект datetime.timedelta с количеством
-    дней на выполнение
-    created - c точной датой и временем создания
-Методы:
-    is_active - проверяет не истело ли время на выполнение задания,
-    возвращает boolean
 
-2. Student
-Атрибуты:
-    last_name
-    first_name
-Методы:
-    do_homework - принимает объект Homework и возвращает его же,
-    если задание уже просрочено, то печатет 'You are late' и возвращает None
+class Homework():
+    
+    def __init__(self, text, number_of_days):
+        self.text = text
+        self.deadline = timedelta(days=number_of_days)
+        self.created = datetime.now()
 
-3. Teacher
-Атрибуты:
-     last_name
-     first_name
-Методы:
-    create_homework - текст задания и количество дней на это задание,
-    возвращает экземпляр Homework
-    Обратите внимание, что для работы этого метода не требуется сам объект.
+    def is_active(self):
+        return self.created + self.deadline > datetime.now()
 
-PEP8 соблюдать строго, проверку делаю автотестами и просмотром кода.
-Всем перечисленным выше атрибутам и методам классов сохранить названия.
-К названием остальных переменных, классов и тд. подходить ответственно -
-давать логичные подходящие имена.
-"""
-import datetime
+    
+class Student():
 
+    def __init__(self, last_name, first_name):
+        self.first_name = first_name
+        self.last_name = last_name
+
+    @staticmethod
+    def do_homework(homework):
+        if homework.is_active():
+            return homework
+        else:
+            print('You are late')
+
+
+class Teacher():
+    
+    def __init__(self, last_name, first_name):
+        self.first_name = first_name
+        self.last_name = last_name
+
+    @staticmethod
+    def create_homework(text, days):
+        return Homework(text, days)
+    
 
 if __name__ == '__main__':
     teacher = Teacher('Daniil', 'Shadrin')
@@ -54,7 +51,7 @@ if __name__ == '__main__':
     # create function from method and use it
     create_homework_too = teacher.create_homework
     oop_homework = create_homework_too('create 2 simple classes', 5)
-    oop_homework.deadline  # 5 days, 0:00:00
+    oop_homework.deadline # 5 days, 0:00:00
 
     student.do_homework(oop_homework)
     student.do_homework(expired_homework)  # You are late
