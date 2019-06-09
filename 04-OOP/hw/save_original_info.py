@@ -15,7 +15,9 @@ def change_info(req_func):
     def decorator(func):
         def wrapper(*args, **kwargs):
             return func(*args, **kwargs)
-        functools.update_wrapper(wrapper, req_func)
+        wrapper.__name__ = req_func.__name__
+        wrapper.__doc__ = req_func.__doc__
+        wrapper.__original_func = req_func
         return wrapper
     return decorator
 
