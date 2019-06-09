@@ -11,7 +11,25 @@ reset_instances_counter - сбросить счетчик экземпляров
 
 
 def instances_counter(cls):
-    """Some code"""
+    
+    def new(cls, *args, **kwargs):
+        result = super(cls, cls).__new__(cls)
+        cls.counter += 1
+        return result
+    
+    @staticmethod
+    def get_created_instances():
+        return cls.counter
+    
+    @staticmethod
+    def reset_instances_counter():
+        result, cls.counter = cls.counter, 0
+        return result
+
+    cls.__new__ = staticmethod(new)
+    cls.counter = 0
+    setattr(cls, 'get_created_instances', get_created_instances)
+    setattr(cls, 'reset_instances_counter', reset_instances_counter)
     return cls
 
 
@@ -22,7 +40,8 @@ class User:
 
 if __name__ == '__main__':
 
-    User.get_created_instances()  # 0
+    print(User.get_created_instances())  # 0
     user, _, _ = User(), User(), User()
-    user.get_created_instances()  # 3
-    user.reset_instances_counter()  # 3
+    print(user.get_created_instances())  # 3
+    print(user.reset_instances_counter())  # 3
+    print(user.get_created_instances()) # 0 
