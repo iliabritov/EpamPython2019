@@ -6,6 +6,7 @@ E - dict(<V> : [<V>, <V>, ...])
 """
 from collections import deque
 
+
 class Graph:
     def __init__(self, E):
         self.E = E
@@ -29,10 +30,9 @@ class Graph:
         else:
             raise StopIteration()
         
+if __name__ == '__main__':
+    E = {'A': ['B', 'C', 'D'], 'B': ['C'], 'C': [], 'D': ['A']}
+    graph = Graph(E)
 
-
-E = {'A': ['B', 'C', 'D'], 'B': ['C'], 'C': [], 'D': ['A']}
-graph = Graph(E)
-
-for vertice in graph:
-    print(vertice)
+    for vertice in graph:
+        print(vertice)
