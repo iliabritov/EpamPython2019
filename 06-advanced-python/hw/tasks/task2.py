@@ -31,8 +31,7 @@ class Graph:
             raise StopIteration()
         
 if __name__ == '__main__':
-    E = {'A': ['B', 'C', 'D'], 'B': ['C'], 'C': [], 'D': ['A']}
+    E = {'A': ['B'], 'B': ['C'], 'C': ['H', 'N'], 'D': ['A'], 'H': ['D'], 'N': []}
     graph = Graph(E)
-
     for vertice in graph:
         print(vertice)

@@ -28,8 +28,8 @@ class CeasarSipher:
 
 if __name__ == '__main__':
     a = CeasarSipher()
-    a.message = 'abc'
+    a.message = 'qwe'
     a.another_message = 'hello'
 
-    assert a.message == 'efg'
+    assert a.message == 'uai'
     assert a.another_message == 'olssv'
