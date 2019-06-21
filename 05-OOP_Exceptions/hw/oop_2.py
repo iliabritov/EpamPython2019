@@ -39,7 +39,8 @@ class Teacher(Person):
     def check_homework(cls, hw_result):
         solution = hw_result.solution
         if len(solution) > 5 and hw_result.solution not in cls.homework_done:
-            cls.homework_done[hw_result.homework][hw_result.solution] = hw_result
+            (cls.homework_done[hw_result.homework]
+            [hw_result.solution]) = hw_result
             return True
         return False
 
@@ -48,7 +49,7 @@ class Teacher(Person):
         if hw:
             del cls.homework_done[hw]
         else:
-            cls.homework_done = {}
+            cls.homework_done = defaultdict(dict)
 
 
 class HomeworkResult():
