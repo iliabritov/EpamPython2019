@@ -12,9 +12,17 @@ class Graph:
         self.E = E
 
     def __iter__(self):
+        return GraphIterator(self)
+
+
+class GraphIterator:
+    def __init__(self, graph):
+        self.E = graph.E
         self.prev_elems = []
         self.next_elems = deque()
         self.next_elems += [tuple(self.E.keys())[0]]
+
+    def __iter__(self):
         return self
 
     def __next__(self):
@@ -29,7 +37,8 @@ class Graph:
                 return top
         else:
             raise StopIteration()
-        
+
+          
 if __name__ == '__main__':
     E = {'A': ['B'], 'B': ['C'], 'C': ['H', 'N'], 'D': ['A'], 'H': ['D'], 'N': []}
     graph = Graph(E)

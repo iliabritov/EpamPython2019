@@ -8,7 +8,7 @@ from tasks.task3 import CeasarSipher
 
 # task1
 @pytest.fixture()
-def task1_case_preparing():
+def task1_contains_method_case_preparing():
     """Preparing data for testing __contains__ method in task1"""
     result = []
     for path, folders, files in os.walk('test_folder'):
@@ -23,7 +23,7 @@ def task1_case_preparing():
     ('test_folder', """V test_folder\n|-> V test_fold1\n|   |-> V test_sub\n|   |   |-> finish.txt\n|   |-> 312.txt\n|-> V test_fold2\n|   |-> V test_sb\n|   |-> 333.txt\n|   |-> 444.txt\n|-> 123.txt"""),
     ('test_folder\\test_fold1' , """V test_fold1\n|-> V test_sub\n|   |-> finish.txt\n|-> 312.txt""")
 ])
-def test_task1_num1(path, expected):
+def test_task1_str_method(path, expected):
     """testing __str__ method in task1"""
     content = os.listdir(path)
     folders = [elem for elem in content
@@ -35,9 +35,9 @@ def test_task1_num1(path, expected):
     assert result == expected
 
 
-def test_task1_num2(task1_case_preparing):
+def test_task1_contains_method(task1_contains_method_case_preparing):
     """testing __contains__ method in task1"""
-    for folder, file in task1_case_preparing:
+    for folder, file in task1_contains_method_case_preparing:
         assert (file in folder) == True
 
 # task2
@@ -46,14 +46,14 @@ def test_task1_num2(task1_case_preparing):
     ({'A': ['B', 'D'], 'B': ['C'], 'C': ['H'], 'D': ['A'], 'H': []}, 'ABDCH'),
     ({'A': ['B'], 'B': ['C'], 'C': ['H', 'N'], 'D': ['A'], 'H': ['D'], 'N': []}, 'ABCHND')
 ])
-def test_task2(graph, expected):
+def test_graph_iteration(graph, expected):
     """test task2 based on parametrize"""
     assert ''.join([element for element in Graph(graph)]) == expected
 
 
 # task3
 @pytest.fixture()
-def ceasarObj():
+def ceasar_obj():
     """prepare data for testing task3"""
     obj = CeasarSipher()
     obj.message = 'qwe'
@@ -61,7 +61,7 @@ def ceasarObj():
     return obj
 
 
-def test_task3(ceasarObj):
+def test_caesar_descriptor(ceasar_obj):
     """testing task3"""
-    assert ceasarObj.message == 'uai'
-    assert ceasarObj.another_message == 'olssv'
+    assert ceasar_obj.message == 'uai'
+    assert ceasar_obj.another_message == 'olssv'
