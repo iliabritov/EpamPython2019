@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import socket
+import threading
+
+
+def accept_connection(sock):
+    while True:
+        client, addr = sock.accept()
+        print(f'''Address {addr[0]}:{addr[1]} has been connected''')
+        threading.Thread(target=handle_client_connection,
+                         args=(client,)).start()
+
+
+def handle_client_connection(client):
+    # Take name from new user
+    client.send(bytes('Please, enter your name below', 'utf-8'))
+    username = client.recv(1024).decode('utf-8')
+    clients[client] = username
+    hello_message = 'ADMIN: We have a new user! It\'s ' + username + '!'
+    send_message(hello_message.encode('utf-8'))
+
+    while True:
+        message = client.recv(1024)
+        if message == '/leave'.encode('utf-8'):
+            client.close()
+            del clients[client]
+            break
+
+        message = (username + ': ').encode('utf-8') + message
+        send_message(message)
+
+
+def send_message(message):
+    for sock in clients:
+        sock.send(message)
+
+
+if __name__ == '__main__':
+    clients = {}
+    address = ('', 8800)
+
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind(address)
+    server.listen(4)
+    print('Start server')
+
+    accept_thread = threading.Thread(target=accept_connection, args=(server, ))
+    accept_thread.start()
+    accept_thread.join()
+
+    server.close()
