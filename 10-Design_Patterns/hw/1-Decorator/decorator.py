@@ -9,9 +9,32 @@ class Component:
         raise NotImplementedError("Override get_cost method")
 
 
+class Decorator(Component):
+    def __init__(self, component):
+        self._component = component
+
+    def get_cost(self):
+        return self._component.get_cost()
+
+
 class BaseCoffe(Component):
     def get_cost(self):
         return 90
+
+
+class Whip(Decorator):
+    def get_cost(self):
+        return self._component.get_cost() + 50
+
+
+class Marshmallow(Decorator):
+    def get_cost(self):
+        return self._component.get_cost() + 45
+
+
+class Syrup(Decorator):
+    def get_cost(self):
+        return self._component.get_cost() + 31
 
 
 if __name__ == "__main__":
