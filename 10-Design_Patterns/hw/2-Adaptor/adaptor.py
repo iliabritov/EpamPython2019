@@ -108,9 +108,9 @@ def client_code(documents_handler):
     print(documents_handler.get_documents(document_ids[1]))
 
 
-class Adapter(DocumentsHandler):
-    def __init__(self, service):
-        self._service = service
+class Adapter():
+    def __init__(self, documents_handler):
+        self._documents_handler = documents_handler
 
     def upload_documents(self, documents):
         json_docs = []
@@ -121,10 +121,10 @@ class Adapter(DocumentsHandler):
             os.rename(os.path.join(path_to_file, doc), os.path.join(path_to_file, filename))
 
             json_docs.append(filename)
-        return self._service.upload_documents(json_docs)
+        return self._documents_handler.upload_documents(json_docs)
 
     def get_documents(self, document_ids):
-        return self._service.get_documents(document_ids)
+        return self._documents_handler.get_documents(document_ids)
             
 
 if __name__ == "__main__":

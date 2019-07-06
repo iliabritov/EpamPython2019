@@ -24,7 +24,7 @@ class BaseCheck():
         pass
 
 
-class Check_eggs(BaseCheck):
+class CheckEggs(BaseCheck):
     def handle(self, fridge):
         ingr = 'eggs'
         if fridge.content_list[ingr] < 2:
@@ -32,7 +32,7 @@ class Check_eggs(BaseCheck):
         self.next_check.handle(fridge)
 
 
-class Check_milk(BaseCheck):
+class CheckMilk(BaseCheck):
     def handle(self, fridge):
         ingr = 'milk'
         if fridge.content_list[ingr] < 0.5:
@@ -40,7 +40,7 @@ class Check_milk(BaseCheck):
         self.next_check.handle(fridge)
 
 
-class Check_oil(BaseCheck):
+class CheckOil(BaseCheck):
     def handle(self, fridge):
         ingr = 'oil'
         if fridge.content_list[ingr] < 10:
@@ -48,7 +48,7 @@ class Check_oil(BaseCheck):
         self.next_check.handle(fridge)
 
 
-class Check_butter(BaseCheck):
+class CheckButter(BaseCheck):
     def handle(self, fridge):
         ingr = 'butter'
         if fridge.content_list[ingr] < 120:
@@ -56,7 +56,7 @@ class Check_butter(BaseCheck):
         self.next_check.handle(fridge)
 
 
-class Check_flour(BaseCheck):
+class CheckFlour(BaseCheck):
     def handle(self, fridge):
         ingr = 'flour'
         if fridge.content_list[ingr] < 300:
@@ -64,7 +64,7 @@ class Check_flour(BaseCheck):
         self.next_check.handle(fridge)
 
 
-class Check_sugar(BaseCheck):
+class CheckSugar(BaseCheck):
     def handle(self, fridge):
         ingr = 'sugar'
         if fridge.content_list[ingr] < 100:
@@ -76,12 +76,12 @@ if __name__ == '__main__':
     fridge_list = {'eggs':3, 'milk':0, 'oil': 100,
                    'butter': 50, 'flour': 200, 'sugar': 250}
     fridge = Fridge(fridge_list)
-    check1 = Check_eggs()
-    check2 = Check_milk()
-    check3 = Check_oil()
-    check4 = Check_butter()
-    check5 = Check_flour()
-    check6 = Check_sugar()
+    check1 = CheckEggs()
+    check2 = CheckMilk()
+    check3 = CheckOil()
+    check4 = CheckButter()
+    check5 = CheckFlour()
+    check6 = CheckSugar()
 
     check1.set_next(check2)
     check2.set_next(check3)
