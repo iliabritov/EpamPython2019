@@ -17,6 +17,10 @@ class Fridge():
 
 
 class BaseCheck():
+
+    def __init__(self):
+        self.shopping_count = 0
+    
     def set_next(self, handle):
         self.next_check = handle
 
@@ -26,53 +30,53 @@ class BaseCheck():
 
 class CheckEggs(BaseCheck):
     def handle(self, fridge):
-        ingr = 'eggs'
-        if fridge.content_list[ingr] < 2:
-            shopping_list[ingr] = 2 - fridge.content_list[ingr]
+        self.ingr = 'eggs'
+        if fridge.content_list[self.ingr] < 2:
+            self.shopping_count = 2 - fridge.content_list[self.ingr]
         self.next_check.handle(fridge)
 
 
 class CheckMilk(BaseCheck):
     def handle(self, fridge):
-        ingr = 'milk'
-        if fridge.content_list[ingr] < 0.5:
-            shopping_list[ingr] = 0.5 - fridge.content_list[ingr]
+        self.ingr = 'milk'
+        if fridge.content_list[self.ingr] < 0.5:
+            self.shopping_count = 0.5 - fridge.content_list[self.ingr]
         self.next_check.handle(fridge)
 
 
 class CheckOil(BaseCheck):
     def handle(self, fridge):
-        ingr = 'oil'
-        if fridge.content_list[ingr] < 10:
-            shopping_list[ingr] = 10 - fridge.content_list[ingr]
+        self.ingr = 'oil'
+        if fridge.content_list[self.ingr] < 10:
+            self.shopping_count = 10 - fridge.content_list[self.ingr]
         self.next_check.handle(fridge)
 
 
 class CheckButter(BaseCheck):
     def handle(self, fridge):
-        ingr = 'butter'
-        if fridge.content_list[ingr] < 120:
-            shopping_list[ingr] = 120 - fridge.content_list[ingr]
+        self.ingr = 'butter'
+        if fridge.content_list[self.ingr] < 120:
+            self.shopping_count = 120 - fridge.content_list[self.ingr]
         self.next_check.handle(fridge)
 
 
 class CheckFlour(BaseCheck):
     def handle(self, fridge):
-        ingr = 'flour'
-        if fridge.content_list[ingr] < 300:
-            shopping_list[ingr] = 300 - fridge.content_list[ingr]
+        self.ingr = 'flour'
+        if fridge.content_list[self.ingr] < 300:
+            self.shopping_count = 300 - fridge.content_list[self.ingr]
         self.next_check.handle(fridge)
 
 
 class CheckSugar(BaseCheck):
     def handle(self, fridge):
-        ingr = 'sugar'
-        if fridge.content_list[ingr] < 100:
-            shopping_list[ingr] = 100 - fridge.content_list[ingr]
+        self.ingr = 'sugar'
+        if fridge.content_list[self.ingr] < 100:
+            self.shopping_count = 100 - fridge.content_list[self.ingr]
 
 
 if __name__ == '__main__':
-    shopping_list = {}
+    #shopping_list = {}
     fridge_list = {'eggs':3, 'milk':0, 'oil': 100,
                    'butter': 50, 'flour': 200, 'sugar': 250}
     fridge = Fridge(fridge_list)
@@ -89,11 +93,13 @@ if __name__ == '__main__':
     check4.set_next(check5)
     check5.set_next(check6)
 
+    check_list = [check1, check2, check3,
+                  check4, check5, check6]
+    
     check1.handle(fridge)
 
-    if shopping_list:
-        print('Shopping list:')
-        for elem in shopping_list:
-            print(f'{elem} - {shopping_list[elem]}')
+    for check in check_list:
+        if check.shopping_count:
+            print(f'{check.ingr} - {check.shopping_count}')
     else:
         print('It\'s time to cook!')
